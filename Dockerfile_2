@@ -8,7 +8,7 @@ WORKDIR /app
 COPY --from=client /app/client/build ./client/build
 COPY /package*.json ./
 RUN cd server && npm install
-COPY src/config/server.js ./
+COPY server/index.js ./server/
 
 EXPOSE 8080
 

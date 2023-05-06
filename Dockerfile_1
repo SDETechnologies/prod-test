@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . ./
 # RUN yarn
 # RUN yarn build
-# RUN npm run build
+RUN npm run build
 
 # server environment
 FROM nginx:alpine
