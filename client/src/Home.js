@@ -23,7 +23,12 @@ export default class Home extends Component {
                 testResult: data.result
             });
         })
-        .catch(err => console.log('error: ', err));
+        .catch(err => {
+            console.log('error: ', err);
+            this.setState({
+                testResult: "error"
+            });
+        });
     }
 
     render(){
