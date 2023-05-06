@@ -14,7 +14,7 @@ export default class Home extends Component {
 
     async testServer(){
         console.log('testServer()');
-        await fetch('https://cra-cloud-run-snc4sjprxq-uc.a.run.app/api/testserver')
+        await fetch('/api/testserver')
         // await fetch('http://localhost:3000/api/testserver')
         .then(res => res.json())
         .then(data => {
