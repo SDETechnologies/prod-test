@@ -5,8 +5,14 @@ import './App.css';
 function App() {
 
   
-  var testServer = () => {
-    console.log('testServer');
+  var testServer = async () => {
+    console.log('testServer()');
+    await fetch('https://cra-cloud-run-snc4sjprxq-uc.a.run.app/api/testserver')
+    .then(res => res.json())
+    .then(data => {
+      console.log('data: ', data);
+    })
+    .catch(err => console.log('error: ', error));
   }
   
 
