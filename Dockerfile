@@ -7,7 +7,7 @@ FROM node:lts-slim AS server
 WORKDIR /app
 COPY --from=client /app/client/build ./client/build
 COPY /package*.json ./
-RUN cd server && npm install
+RUN npm install
 COPY src/config/server.js ./
 
 EXPOSE 8080
