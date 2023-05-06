@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const testRouter = require('.././routes/TestRouter'); 
+const { test } = require('node:test');
+
 
 const app = express();
 // const PORT = 3000;
@@ -15,8 +18,10 @@ app.listen(PORT, () => {
     console.log('Server is listen at http://localhost:' + PORT);
 });
 
-app.get('/api/testserver', async (req, res) => {
-    res.send({
-        result: "ok"
-    });
-});
+app.use('/api', testRouter);
+
+// app.get('/api/testserver', async (req, res) => {
+//     res.send({
+//         result: "ok"
+//     });
+// });
