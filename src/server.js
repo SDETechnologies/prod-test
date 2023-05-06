@@ -25,6 +25,12 @@ app.listen(PORT, () => {
 
 app.use('/api', testRouter);
 
+app.get('/testserver', async (req, res) => {
+    res.send({
+        result: "ok"
+    });
+});
+
 // app.get('/api/testserver', async (req, res) => {
 //     res.send({
 //         result: "ok"
