@@ -1,15 +1,23 @@
-FROM node:lts-slim AS client
+# build environment
+FROM node:14-alpine as react-build
 WORKDIR /app
-COPY client/ ./client/
-RUN cd client && npm install && npm run build
+COPY . ./
+# RUN yarn
+# RUN yarn build
+RUN npm run build
 
-FROM node:lts-slim AS server
-WORKDIR /app
-COPY --from=client /app/client/build ./client/build
-COPY /package*.json ./
-RUN npm install
-COPY src/config/server.js ./
+# server environment
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/configfile.template
 
+# COPY --from=react-build /app/build /usr/share/nginx/html
+COPY --from=react-build /app/client/build /usr/share/nginx/html
+
+ENV PORT 8080
+ENV HOST 0.0.0.0
 EXPOSE 8080
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/conf.d/configfile.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
-CMD ["start"]
+# RUN npm start
+CMD["start"];
+
