@@ -14,6 +14,10 @@ app.use(express.urlencoded({
     extended: true,
 }));
 
+var testPath = path.join(__dirname,"../../client/build");
+// console.log('testPath: ', testPath);
+app.use(express.static(testPath));
+
 app.listen(PORT, () => {
     console.log('Server is listen at http://localhost:' + PORT);
 });
